@@ -587,9 +587,9 @@ class StockAnalysisSystem:
                 with col1:
                     st.metric("数据点数量", len(data))
                 with col2:
-                    st.metric("开始日期", data.index.min().date())
+                    st.metric("开始日期", str(data.index.min().date()))
                 with col3:
-                    st.metric("结束日期", data.index.max().date())
+                    st.metric("结束日期", str(data.index.max().date()))
                 with col4:
                     returns = (data['Close'].iloc[-1] / data['Close'].iloc[0] - 1) * 100
                     st.metric("期间收益率", f"{returns:.2f}%")
