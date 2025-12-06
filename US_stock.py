@@ -131,6 +131,21 @@ class DataManager:
                 data['date'] = data['Datetime'].dt.date
             
             data['symbol'] = symbol
+
+            rename_map = {
+                'Open': 'open',
+                'High': 'high',
+                'Low': 'low',
+                'Close': 'close',
+                'Volume': 'volume',
+                'Dividends': 'dividends',
+                'Stock Splits': 'stock_splits'
+            }
+            data.rename(columns=rename_map, inplace=True)
+            
+            # 筛选出数据库中存在的列
+            db_columns = ['symbol', 'date', 'open', 'high', 'low', 'close', 'volume', 'dividends', 'stock_splits']
+            data_to_save = data[[col for col in db_columns if col in data.columns]]
             
             # 保存到数据库
             data.to_sql('stocks', conn, if_exists='append', index=False, 
