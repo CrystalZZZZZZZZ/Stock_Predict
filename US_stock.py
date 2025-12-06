@@ -214,6 +214,10 @@ class DataManager:
                 data['date'] = pd.to_datetime(data['date'])
                 data.set_index('date', inplace=True)
                 data.index.name = 'Date'
+                # 将列名转换为首字母大写，以匹配后续代码
+                data.columns = [col.capitalize() for col in data.columns]
+                if 'Stock_splits' in data.columns:
+                    data.rename(columns={'Stock_splits': 'Stock Splits'}, inplace=True)
             
             conn.close()
             return data
