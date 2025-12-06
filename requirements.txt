@@ -4,7 +4,7 @@ numpy
 yfinance
 plotly
 scipy
-openpyxl// filepath: requirements.txt
+openpyxl
 streamlit
 pandas
 numpy
